@@ -1,0 +1,22 @@
+mapreduce:
+- name: Add random data
+  mapper:
+    input_reader: mapreduce.input_readers.RandomStringInputReader
+    handler: tools.addfake
+    params:
+    - name: count
+      default: 10000
+    - name: string_length
+      default: 10
+    params_validator: tools.validator
+
+- name: Search
+  mapper:
+    input_reader: mapreduce.input_readers.RandomStringInputReader
+    handler: tools.chekfake
+    params:
+    - name: count
+      default: 10000
+    - name: string_length
+      default: 10
+    params_validator: tools.validator

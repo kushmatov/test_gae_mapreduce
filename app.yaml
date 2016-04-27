@@ -1,0 +1,22 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+instance_class: F4_1G
+automatic_scaling:
+  min_idle_instances: 2
+
+includes:
+- mapreduce/include.yaml
+
+handlers:
+- url: /_ah/pipeline.*
+  script: mapreduce.lib.pipeline.handlers._APP
+  login: admin
+
+inbound_services:
+- warmup
+
+builtins:
+- appstats: off
+- deferred: on
+- remote_api: on
